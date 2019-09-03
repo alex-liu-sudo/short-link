@@ -1,0 +1,23 @@
+{
+    "name": "sina-cloud-costomer/short-link",
+    "description": "sina short link generate.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "AlexLiu",
+            "email": "18612412838@163.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alex\\ShortLink\\Provider\\LaravelServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "predis/predis": "^1.1"
+    }
+}
