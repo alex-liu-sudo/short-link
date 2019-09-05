@@ -21,6 +21,7 @@
             "Alex\\ShortLink\\": "src/"
         }
     },
+    "license": "MIT",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "predis/predis": "^1.1"
