@@ -64,6 +64,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * 获取短链接.
+     *
      * @param $sourceUrl
      * @return mixed
      * @throws \Exception
@@ -78,6 +80,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * 设置短链接.
+     *
      * @return mixed|void
      * @throws \Exception
      */
@@ -89,6 +93,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * 设置微信短链接.
+     *
      * @return array|mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -116,6 +122,32 @@ class Client implements ClientInterface
         return $this->shortUrl = Arr::get($shortUrl, 'short_url');
     }
 
+
+    /**
+     * 设置新浪短链接.
+     *
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function setSinaShortUrl()
+    {
+        $apiUrl = "http://api.t.sina.com.cn/short_url/shorten.json";
+
+        $response = $this->getRequestClient()->request('GET', $apiUrl, [
+            'query' => [
+                'long_url' => $this->sourceUrl,
+                'source' => $this->config['sina_key']
+            ]
+        ]);
+
+        $urlJson = $response->getBody()->getContents();
+
+        $shortUrl = json_decode($urlJson, 1);
+
+        return $this->shortUrl = Arr::get($shortUrl, 'url_short');
+
+    }
+
     /**
      * 获取微信AccessToken.
      *
@@ -130,12 +162,10 @@ class Client implements ClientInterface
 
         $apiUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
 
-        $client = $this->getRequestClient();
-
         $url = sprintf($apiUrl, $this->config['wx_appid'], $this->config['wx_secret']);
 
         try {
-            $response = $client->request('get', $url);
+            $response = $this->getRequestClient()->request('get', $url);
 
             if ($response->getStatusCode() != 200) {
                 throw new \Exception('异常请求');
@@ -174,6 +204,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * 获取方法.
+     *
      * @return string
      * @throws \Exception
      */

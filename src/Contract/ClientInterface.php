@@ -8,7 +8,10 @@
 
 namespace Alex\ShortLink\Contract;
 
-
+/**
+ * Interface ClientInterface
+ * @package Alex\ShortLink\Contract
+ */
 interface ClientInterface
 {
     /**
