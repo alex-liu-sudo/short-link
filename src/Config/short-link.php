@@ -8,4 +8,6 @@ return [
     "wx_appid" => env('WECHAT_APPID', null),
 
     "wx_secret" => env('WECHAT_SECRET', null),
+
+    "sina_key" => env('SINA_APP_KEY', null)
 ];
