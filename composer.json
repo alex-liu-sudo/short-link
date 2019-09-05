@@ -16,6 +16,11 @@
             "aliases": {}
         }
     },
+    "autoload": {
+        "psr-4": {
+            "Alex\\ShortLink\\": "src/"
+        }
+    },
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "predis/predis": "^1.1"
